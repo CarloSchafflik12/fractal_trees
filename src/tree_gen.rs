@@ -68,10 +68,12 @@ pub fn fractal_tree_progress(
     let root_next_y = (root_y as f64 - (branch_angle.to_radians().cos() * branch_len)) as u32;
 
     // Draw current branch
-    print!(
-        "\r Progress: {:.2}%                                              ",
-        ((*lines_counter as f32 / max_lines as f32) * 100.0)
-    );
+    if *lines_counter % 100000 == 0 {
+        print!(
+            "\r Progress: {:.2}%                                              ",
+            ((*lines_counter as f32 / max_lines as f32) * 100.0)
+        );
+    }
     canvas.line(root_x, root_y, root_next_x, root_next_y);
     *lines_counter += 1;
 

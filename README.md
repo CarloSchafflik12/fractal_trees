@@ -22,6 +22,9 @@ Options:
 
 ## Changelog
 
+### 1.0.1
+- Fixed slow performance when progress mode is enabled
+
 ### 1.0.0
 - First version
 
