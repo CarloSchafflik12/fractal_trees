@@ -5,15 +5,17 @@ This Rust program generates fractal trees
 ## Arguments
 
 ```text
--i, --iterations <ITERATIONS>        Number of iterations [default: 15]
--a, --angle <ANGLE>                  Angle offset of each branch [default: 22]
--b, --branch-length <BRANCH_LENGTH>  Init branch length [default: 300]
--r, --ratio <RATIO>                  Ratio of branch length [default: 0.8]
-    --resx <RESX>                    Image resolution x [default: 2048]
-    --resy <RESY>                    Image resolution y [default: 2048]
--p, --progress                       Print progress of generation
--h, --help                           Print help
--V, --version                        Print version
+Options:
+      --path <PATH>                    Path of output image [default: out.png]
+  -i, --iterations <ITERATIONS>        Number of iterations [default: 15]
+  -a, --angle <ANGLE>                  Angle offset of each branch [default: 22]
+  -b, --branch-length <BRANCH_LENGTH>  Init branch length [default: 300]
+  -r, --ratio <RATIO>                  Ratio of branch length [default: 0.8]
+      --resx <RESX>                    Image resolution x [default: 2048]
+      --resy <RESY>                    Image resolution y [default: 2048]
+  -p, --progress                       Print progress of generation
+  -h, --help                           Print help
+  -V, --version                        Print version
 ```
 
 ## Changelog
