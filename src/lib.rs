@@ -8,6 +8,10 @@ use tree_gen::{fractal_tree, fractal_tree_progress};
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
 pub struct Config {
+    /// Path of output image
+    #[arg(long, default_value_t = String::from("out.png"))]
+    path: String,
+
     /// Number of iterations
     #[arg(short, long, default_value_t = 15)]
     iterations: u32,
@@ -78,5 +82,5 @@ pub fn run(config: &Config) {
             1,
         );
     }
-    canvas.save("out.png");
+    canvas.save(config.path.as_str());
 }
