@@ -1,54 +1,23 @@
 pub mod canvas;
 
 use canvas::Canvas;
+use clap::Parser;
 use std::error::Error;
 
+#[derive(Parser)]
 pub struct Config {
-    pub iterations: u32,
-    pub angle: f64,
-    pub res_xy: u32,
-}
+    /// Number of iterations
+    #[arg(short, long, default_value_t = 15)]
+    iterations: u32,
 
-impl Config {
-    pub fn build(args: &[String]) -> Result<Config, &'static str> {
-        if args.len() < 3 {
-            return Err("program needs 2 arguments --> <iterations> <angle>");
-        }
-
-        let iterations = match args[1].parse::<u32>() {
-            Ok(n) => n,
-            Err(_) => return Err("number of iterations not valid"),
-        };
-        if iterations < 1 {
-            return Err("number of iterations must be above 0");
-        }
-
-        let angle = match args[2].parse::<f64>() {
-            Ok(n) => n,
-            Err(_) => return Err("angle not valid"),
-        };
-
-        Ok(Config {
-            iterations,
-            angle,
-            res_xy: 1024,
-        })
-    }
+    /// Angle offset of each branch
+    #[arg(short, long, default_value_t = 22.0)]
+    angle: f64,
 }
 
 pub fn run(config: &Config) -> Result<(), Box<dyn Error>> {
     let mut canvas = Canvas::new(2048, 2048);
 
-    /*
-    let mut rng = thread_rng();
-    for _ in 0..5 {
-        let x1: u32 = rng.gen_range(0..config.res_xy);
-        let y1: u32 = rng.gen_range(0..config.res_xy);
-        let x2: u32 = rng.gen_range(0..config.res_xy);
-        let y2: u32 = rng.gen_range(0..config.res_xy);
-        canvas.line(x1, y1, x2, y2);
-    }
-    */
     let tree_x = canvas.width / 2;
     let tree_y = canvas.height - 1;
     fractal_tree(
