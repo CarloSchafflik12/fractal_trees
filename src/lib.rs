@@ -52,7 +52,9 @@ impl Canvas {
         }
     }
 
-    //fn in_bound
+    fn in_bounds(&self, x: u32, y: u32) -> bool {
+        x < self.width && y < self.height
+    }
 
     fn line(&mut self, x1: u32, y1: u32, x2: u32, y2: u32) {
         if (y2 as i32 - y1 as i32).abs() < (x2 as i32 - x1 as i32).abs() {
@@ -84,7 +86,9 @@ impl Canvas {
         let mut y = y1;
 
         for x in x1..=x2 {
-            self.img_buffer.put_pixel(x, y, self.stroke);
+            if self.in_bounds(x, y) {
+                self.img_buffer.put_pixel(x, y, self.stroke);
+            }
             if sel > 0 {
                 y = (y as i32 + yi) as u32;
                 sel += 2 * (dy - dx);
@@ -108,7 +112,9 @@ impl Canvas {
         let mut x = x1;
 
         for y in y1..=y2 {
-            self.img_buffer.put_pixel(x, y, self.stroke);
+            if self.in_bounds(x, y) {
+                self.img_buffer.put_pixel(x, y, self.stroke);
+            }
             if sel > 0 {
                 x = (x as i32 + xi) as u32;
                 sel += 2 * (dx - dy);
@@ -118,13 +124,13 @@ impl Canvas {
         }
     }
 
-    fn save(self, path: &str) {
+    fn save(&self, path: &str) {
         self.img_buffer.save(path).unwrap();
     }
 }
 
 pub fn run(config: &Config) -> Result<(), Box<dyn Error>> {
-    let mut canvas = Canvas::new(1024 * 2, 1024 * 2);
+    let mut canvas = Canvas::new(2048, 2048);
 
     /*
     let mut rng = thread_rng();
