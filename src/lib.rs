@@ -13,10 +13,22 @@ pub struct Config {
     /// Angle offset of each branch
     #[arg(short, long, default_value_t = 22.0)]
     angle: f64,
+
+    /// Init branch length
+    #[arg(short, long, default_value_t = 300.0)]
+    branch_length: f64,
+
+    /// Image resolution x
+    #[arg(long, default_value_t = 2048)]
+    resx: u32,
+
+    /// Image resolution y
+    #[arg(long, default_value_t = 2048)]
+    resy: u32,
 }
 
 pub fn run(config: &Config) -> Result<(), Box<dyn Error>> {
-    let mut canvas = Canvas::new(2048, 2048);
+    let mut canvas = Canvas::new(config.resx, config.resy);
 
     let tree_x = canvas.width / 2;
     let tree_y = canvas.height - 1;
@@ -24,7 +36,7 @@ pub fn run(config: &Config) -> Result<(), Box<dyn Error>> {
         &mut canvas,
         tree_x,
         tree_y,
-        300.0,
+        config.branch_length,
         0.0,
         config.iterations,
         config.angle,
