@@ -21,7 +21,7 @@ pub struct Config {
     angle: f64,
 
     /// Init branch length
-    #[arg(short, long, default_value_t = 300.0)]
+    #[arg(short, long, default_value_t = 320.0)]
     branch_length: f64,
 
     /// Ratio of branch length

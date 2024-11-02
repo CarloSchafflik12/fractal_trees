@@ -2,6 +2,8 @@
 
 This Rust program generates fractal trees
 
+![Example image](out.png)
+
 ## Arguments
 
 ```text
