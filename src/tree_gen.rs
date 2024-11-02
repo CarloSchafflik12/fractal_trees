@@ -8,6 +8,7 @@ pub fn fractal_tree(
     branch_angle: f64,
     max_index_conf: u32,
     angle_conf: f64,
+    ratio_conf: f64,
     index: u32,
 ) {
     let root_next_x = (root_x as f64 + (branch_angle.to_radians().sin() * branch_len)) as u32;
@@ -28,10 +29,11 @@ pub fn fractal_tree(
         canvas,
         root_next_x,
         root_next_y,
-        branch_len * 0.8,
+        branch_len * ratio_conf,
         branch_angle_left,
         max_index_conf,
         angle_conf,
+        ratio_conf,
         index + 1,
     );
 
@@ -40,10 +42,11 @@ pub fn fractal_tree(
         canvas,
         root_next_x,
         root_next_y,
-        branch_len * 0.8,
+        branch_len * ratio_conf,
         branch_angle_right,
         max_index_conf,
         angle_conf,
+        ratio_conf,
         index + 1,
     );
 }
@@ -56,6 +59,7 @@ pub fn fractal_tree_progress(
     branch_angle: f64,
     max_index_conf: u32,
     angle_conf: f64,
+    ratio_conf: f64,
     index: u32,
     lines_counter: &mut u32,
     max_lines: u32,
@@ -87,6 +91,7 @@ pub fn fractal_tree_progress(
         branch_angle_left,
         max_index_conf,
         angle_conf,
+        ratio_conf,
         index + 1,
         lines_counter,
         max_lines,
@@ -101,6 +106,7 @@ pub fn fractal_tree_progress(
         branch_angle_right,
         max_index_conf,
         angle_conf,
+        ratio_conf,
         index + 1,
         lines_counter,
         max_lines,
