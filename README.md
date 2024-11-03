@@ -4,6 +4,14 @@ This Rust program generates fractal trees
 
 ![Example image](out.png)
 
+## Build
+
+Build with cargo:
+
+```bash
+cargo build --release
+```
+
 ## Arguments
 
 ```text
